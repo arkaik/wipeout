@@ -58,8 +58,8 @@ public class HoverScript : MonoBehaviour {
 		RaycastHit hit;
 		for (int i = 0; i < m_hoverPoints.Length; i++) {
 			GameObject hov = m_hoverPoints [i];
-			if (Physics.Raycast( hov.transform.position, Vector3.down, out hit, m_hoverHeight, m_layerMask))
-				m_rb.AddForceAtPosition (Vector3.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
+			if (Physics.Raycast( hov.transform.position, -hov.transform.up, out hit, m_hoverHeight, m_layerMask))
+				m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
 			else {
 				if (transform.position.y > hov.transform.position.y)
 					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce, hov.transform.position);
@@ -87,7 +87,7 @@ public class HoverScript : MonoBehaviour {
 		{
 			var hoverPoint = m_hoverPoints [i];
 			if (Physics.Raycast(hoverPoint.transform.position, 
-				-Vector3.up, out hit,
+				-hoverPoint.transform.up, out hit,
 				m_hoverHeight, 
 				m_layerMask))
 			{
