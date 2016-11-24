@@ -10,17 +10,27 @@ ModelImporter:
     100004: Lamp
     100006: //RootNode
     100008: Plane
+    100010: pista
+    100012: trayectoria Pista
     400000: BezierCurve
     400002: Camera
     400004: Lamp
     400006: //RootNode
     400008: Plane
+    400010: pista
+    400012: trayectoria Pista
     2300000: BezierCurve
     2300002: Plane
+    2300004: pista
+    2300006: trayectoria Pista
     3300000: BezierCurve
     3300002: Plane
+    3300004: pista
+    3300006: trayectoria Pista
     4300000: BezierCurve
     4300002: Plane
+    4300004: trayectoria Pista
+    4300006: pista
   materials:
     importMaterials: 1
     materialName: 0
