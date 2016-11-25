@@ -13,9 +13,11 @@ public class HoverScript : MonoBehaviour {
 	public GameObject[] m_hoverPoints;
 
 	//Forward
-	public float m_forwardAcc = 100.0f;
-	public float m_backwardAcc = 25.0f;
+	public float m_forwardAcc = 5000.0f;
+	public float m_backwardAcc = 500.0f;
 	float m_currThrust = 0.0f;
+
+	private float m_fAcc; 
 
 	//Turn
 	public float m_turnStrength = 10.0f;
@@ -28,6 +30,8 @@ public class HoverScript : MonoBehaviour {
 		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
 		m_layerMask = ~m_layerMask;
 
+		m_fAcc = m_forwardAcc;
+
 	}
 
 	void Update() {
@@ -38,6 +42,9 @@ public class HoverScript : MonoBehaviour {
 			m_currThrust = accAxis * m_forwardAcc;
 		else if (accAxis < -m_deadZone)
 			m_currThrust = accAxis * m_backwardAcc;
+
+		if (m_forwardAcc > m_fAcc)
+			m_forwardAcc -= 50;
 
 		//Turning
 		m_currTurn = 0.0f;
@@ -51,8 +58,8 @@ public class HoverScript : MonoBehaviour {
 		RaycastHit hit;
 		for (int i = 0; i < m_hoverPoints.Length; i++) {
 			GameObject hov = m_hoverPoints [i];
-			if (Physics.Raycast( hov.transform.position, Vector3.down, out hit, m_hoverHeight, m_layerMask))
-				m_rb.AddForceAtPosition (Vector3.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
+			if (Physics.Raycast( hov.transform.position, -hov.transform.up, out hit, m_hoverHeight, m_layerMask))
+				m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
 			else {
 				if (transform.position.y > hov.transform.position.y)
 					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce, hov.transform.position);
@@ -65,10 +72,11 @@ public class HoverScript : MonoBehaviour {
 			m_rb.AddForce (transform.forward*m_currThrust);
 
 		if (m_currTurn > 0)
-			m_rb.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
+			m_rb.AddRelativeTorque (Vector3.up * m_currTurn * m_turnStrength);
 		else if (m_currTurn < 0)
 			m_rb.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
-		
+
+		//m_rb.rotation = Quaternion.Euler (0,0,m_currTurn);
 	}
 
 	void OnDrawGizmos()
@@ -79,7 +87,7 @@ public class HoverScript : MonoBehaviour {
 		{
 			var hoverPoint = m_hoverPoints [i];
 			if (Physics.Raycast(hoverPoint.transform.position, 
-				-Vector3.up, out hit,
+				-hoverPoint.transform.up, out hit,
 				m_hoverHeight, 
 				m_layerMask))
 			{
