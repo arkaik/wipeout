@@ -7,14 +7,14 @@ public class CameraScript : MonoBehaviour {
 	private Vector3 diff;
 	private float dist;
 	private float height;
-	private float prev_angle;
+	//private float prev_angle;
 
 	// Use this for initialization
 	void Start () {
 		diff = new Vector3 (0.0f,1.0f,-5); //this.transform.position - target.transform.position;
 		dist = Mathf.Sqrt (diff.x * diff.x + diff.z * diff.z);
 		height = diff.y;
-		prev_angle = target.transform.eulerAngles.y;
+		//prev_angle = target.transform.eulerAngles.y;
 	}
 	
 	// Update is called once per frame
