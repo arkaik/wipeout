@@ -17,7 +17,7 @@ public class HoverScript : MonoBehaviour {
 	public float m_backwardAcc = 500.0f;
 	float m_currThrust = 0.0f;
 
-	private float m_fAcc; 
+	public float m_maximumAcc = 5000.0f; 
 
 	//Turn
 	public float m_turnStrength = 10.0f;
@@ -30,8 +30,6 @@ public class HoverScript : MonoBehaviour {
 		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
 		m_layerMask = ~m_layerMask;
 
-		m_fAcc = m_forwardAcc;
-
 	}
 
 	void Update() {
@@ -43,7 +41,7 @@ public class HoverScript : MonoBehaviour {
 		else if (accAxis < -m_deadZone)
 			m_currThrust = accAxis * m_backwardAcc;
 
-		if (m_forwardAcc > m_fAcc)
+		if (m_forwardAcc > m_maximumAcc)
 			m_forwardAcc -= 50;
 
 		//Turning
