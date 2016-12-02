@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody))]
 public class HoverScript : MonoBehaviour {
 
 	Rigidbody m_rb;
 	float m_deadZone = 0.1f;
+	float distanceHover = 5.0f;
+	float gravity = 9.8f;
+	private float angulo = 0.0f;
 
 	//Hover
 	public float m_hoverForce = 9.0f;
 	public float m_hoverHeight = 2.0f;
 	public GameObject[] m_hoverPoints;
+	public GameObject hoverPoint;
 
 	//Forward
 	public float m_forwardAcc = 5000.0f;
@@ -29,7 +32,7 @@ public class HoverScript : MonoBehaviour {
 		m_rb = GetComponent<Rigidbody> ();
 		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
 		m_layerMask = ~m_layerMask;
-
+		//hoverPoint = GameObject.Find("h5");
 		m_fAcc = m_forwardAcc;
 
 	}
@@ -54,28 +57,40 @@ public class HoverScript : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-
 		RaycastHit hit;
+		GameObject hov = GameObject.Find("h5");
+		Vector3 newPos = transform.position;
+		if (Physics.Raycast(transform.position,-hov.transform.up, out hit,Mathf.Infinity,m_layerMask)) {
+			if (hit.distance < distanceHover) {
+				newPos.y += (distanceHover - hit.distance);
+			}
+			else if (distanceHover < hit.distance) {
+				newPos.y -= gravity;
+			}
+		}
+		/*RaycastHit hit;
 		for (int i = 0; i < m_hoverPoints.Length; i++) {
 			GameObject hov = m_hoverPoints [i];
 			if (Physics.Raycast( hov.transform.position, -hov.transform.up, out hit, m_hoverHeight, m_layerMask))
-				m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
+				if (hit.distance < distanceHover) {
+					transform.position.y += (hit.distance - transform.position.y);
+				}
+				//m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
 			else {
 				if (transform.position.y > hov.transform.position.y)
 					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce, hov.transform.position);
 				else
 					m_rb.AddForceAtPosition (hov.transform.up * -m_hoverForce, hov.transform.position);
 			}
+		}*/
+		if (m_currTurn != 0) {
+			float a = angulo * Mathf.PI / 180;
+			newPos.y = newPos.y*Mathf.Cos(a) - newPos.x*Mathf.Sin(a);
+			newPos.x = newPos.y*Mathf.Sin(a) + newPos.x*Mathf.Cos(a);
 		}
-
 		if (Mathf.Abs (m_currThrust) > 0)
-			m_rb.AddForce (transform.forward*m_currThrust);
-
-		if (m_currTurn > 0)
-			m_rb.AddRelativeTorque (Vector3.up * m_currTurn * m_turnStrength);
-		else if (m_currTurn < 0)
-			m_rb.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
-
+			transform.forward += transform.forward*m_currThrust;
+		transform.position = newPos;
 		//m_rb.rotation = Quaternion.Euler (0,0,m_currTurn);
 	}
 
@@ -83,7 +98,17 @@ public class HoverScript : MonoBehaviour {
 	{
 		//  Hover Force
 		RaycastHit hit;
-		for (int i = 0; i < m_hoverPoints.Length; i++)
+		GameObject hoverPoint = GameObject.Find("/Ship/h5");
+		if (Physics.Raycast(hoverPoint.transform.position, 
+			-hoverPoint.transform.up, out hit,
+			m_hoverHeight, 
+			m_layerMask))
+		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawLine(hoverPoint.transform.position, hit.point);
+			Gizmos.DrawSphere(hit.point, 0.5f);
+		}
+		/*for (int i = 0; i < m_hoverPoints.Length; i++)
 		{
 			var hoverPoint = m_hoverPoints [i];
 			if (Physics.Raycast(hoverPoint.transform.position, 
@@ -100,6 +125,6 @@ public class HoverScript : MonoBehaviour {
 				Gizmos.DrawLine(hoverPoint.transform.position, 
 					hoverPoint.transform.position - Vector3.up * m_hoverHeight);
 			}
-		}
+		}*/
 	}
 }
