@@ -25,6 +25,8 @@ public class HoverScript : MonoBehaviour {
 
 	int m_layerMask;
 
+	private Vector3 m_gravity = new Vector3 (0,-1,0);
+
 	void Start() {
 		m_rb = GetComponent<Rigidbody> ();
 		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
@@ -53,11 +55,16 @@ public class HoverScript : MonoBehaviour {
 
 	void FixedUpdate() {
 
+		Vector3 grav_force = m_gravity * m_rb.mass * 9.81f;
+		m_rb.AddForce (grav_force);
+
 		RaycastHit hit;
 		for (int i = 0; i < m_hoverPoints.Length; i++) {
 			GameObject hov = m_hoverPoints [i];
-			if (Physics.Raycast( hov.transform.position, -hov.transform.up, out hit, m_hoverHeight, m_layerMask))
+			if (Physics.Raycast (hov.transform.position, -hov.transform.up, out hit, m_hoverHeight, m_layerMask)) {
 				m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
+				m_gravity = -transform.up;
+			}
 			else {
 				if (transform.position.y > hov.transform.position.y)
 					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce, hov.transform.position);
