@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -6,7 +7,8 @@ public class HoverScript : MonoBehaviour {
 
 	Rigidbody m_rb;
 	float m_deadZone = 0.1f;
-
+	//float m_gravity = 9.8f;
+	float distanceHover = 100.0f;
 	//Hover
 	public float m_hoverForce = 9.0f;
 	public float m_hoverHeight = 2.0f;
@@ -61,8 +63,13 @@ public class HoverScript : MonoBehaviour {
 		RaycastHit hit;
 		for (int i = 0; i < m_hoverPoints.Length; i++) {
 			GameObject hov = m_hoverPoints [i];
-			if (Physics.Raycast (hov.transform.position, -hov.transform.up, out hit, m_hoverHeight, m_layerMask)) {
-				m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
+			if (Physics.Raycast( hov.transform.position, -hov.transform.up, out hit, m_hoverHeight, m_layerMask)) {
+				if (hit.distance < distanceHover) {
+					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
+				}
+				else if (distanceHover < hit.distance) {
+					//m_rb.AddForceAtPosition (hov.transform.up * -gravity, hov.transform.position);
+				}
 				m_gravity = -transform.up;
 			}
 			else {
