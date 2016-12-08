@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour {
 
+	public Camera mainCamera;
+
 	public Canvas creditsMenu;
 	public Canvas helpMenu;
 
@@ -13,6 +15,11 @@ public class MenuScript : MonoBehaviour {
 	public Button creditsButton;
 	public Button helpButton;
 
+	private Quaternion fromRotation;
+	private Quaternion toRotation;
+	private float speed = 0.5f;
+	private float timer = 0.0f;
+
 	// Use this for initialization
 	void Start () {
 		playButton = playButton.GetComponent<Button> ();
@@ -20,8 +27,8 @@ public class MenuScript : MonoBehaviour {
 		creditsButton = exitButton.GetComponent<Button> ();
 		helpButton = exitButton.GetComponent<Button> ();
 
-		creditsMenu.enabled = false;
-		helpMenu.enabled = false;
+		//creditsMenu.enabled = false;
+		//helpMenu.enabled = false;
 	}
 
 	public void StartLevel() {
@@ -33,23 +40,34 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void CreditsEnter() {
-		creditsMenu.enabled = true;
+		timer = 0.0f;
+		fromRotation = Quaternion.Euler (0f, 0f, 0f);
+		toRotation = Quaternion.Euler (0f, 90f, 0f);
 	}
 
 	public void CreditsExit() {
-		creditsMenu.enabled = false;
+		timer = 0.0f;
+		fromRotation = Quaternion.Euler (0f, 90f, 0f);
+		toRotation = Quaternion.Euler (0f, 0f, 0f);
 	}
 
 	public void HelpEnter() {
-		helpMenu.enabled = true;
+		timer = 0.0f;
+		fromRotation = Quaternion.Euler (0f, 0f, 0f);
+		toRotation = Quaternion.Euler (0f, -90f, 0f);
 	}
 
 	public void HelpExit() {
-		helpMenu.enabled = false;
+		timer = 0.0f;
+		fromRotation = Quaternion.Euler (0f, -90f, 0f);
+		toRotation = Quaternion.Euler (0f, 0f, 0f);
+
 	}
 
 	// Update is called once per frame
 	void Update () {
-	
+		mainCamera.transform.rotation = Quaternion.Slerp(fromRotation, toRotation, timer * speed);
+
+		timer += Time.deltaTime;
 	}
 }
