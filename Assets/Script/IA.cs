@@ -32,10 +32,10 @@ public class IA : MonoBehaviour {
 	         // check if we have somewere to walk
 			 if (currentPointID < PathToFollow.path_objs.Count) {
 				 Vector3 targetPosition = PathToFollow.path_objs[currentPointID].position;
-				 float distance = Vector3.Distance(targetPosition, transform.position);
-				 transform.position = Vector3.MoveTowards(transform.position,targetPosition,speed*Time.deltaTime);
 				 var rotation = Quaternion.LookRotation(targetPosition - transform.position);
 				 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+				 float distance = Vector3.Distance(targetPosition, transform.position);
+				 transform.position = Vector3.MoveTowards(transform.position,targetPosition,speed*Time.deltaTime);
 				 if (distance <= reachDistance) {
 					 currentPointID = (currentPointID + 1) % PathToFollow.path_objs.Count;
 				 }
