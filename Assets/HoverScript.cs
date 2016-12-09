@@ -59,7 +59,7 @@ public class HoverScript : MonoBehaviour {
 
 	void FixedUpdate() {
 
-		Vector3 grav_force = m_gravity * m_rb.mass * 15f;
+		Vector3 grav_force = m_gravity * m_rb.mass * 18.81f;
 		m_rb.AddForce (grav_force);
 
 		RaycastHit hit;
@@ -70,7 +70,7 @@ public class HoverScript : MonoBehaviour {
 					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
 				}
 				else if (distanceHover < hit.distance) {
-					//m_rb.AddForceAtPosition (hov.transform.up * -gravity, hov.transform.position);
+					m_rb.AddForceAtPosition (m_gravity, hov.transform.position);
 				}
 				m_gravity = -transform.up;
 			}
