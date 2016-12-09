@@ -29,6 +29,8 @@ public class HoverScript : MonoBehaviour {
 
 	private Vector3 m_gravity = new Vector3 (0,-1,0);
 
+	public int numberLaps = 0;
+
 	void Start() {
 		m_rb = GetComponent<Rigidbody> ();
 		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
@@ -57,7 +59,7 @@ public class HoverScript : MonoBehaviour {
 
 	void FixedUpdate() {
 
-		Vector3 grav_force = m_gravity * m_rb.mass * 9.81f;
+		Vector3 grav_force = m_gravity * m_rb.mass * 15f;
 		m_rb.AddForce (grav_force);
 
 		RaycastHit hit;

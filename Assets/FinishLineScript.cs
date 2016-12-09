@@ -4,11 +4,16 @@ using System.Collections;
 public class FinishLineScript : MonoBehaviour {
 
 	public Canvas endMenu;
-	private int max_num_rounds = 1;
+	public int maxNumberLaps = 1;
 
 	void OnTriggerExit(Collider other) {
-		endMenu.enabled = true;
-		other.attachedRigidbody.velocity = Vector3.zero;
+		HoverScript hs = other.gameObject.GetComponent<HoverScript>();
+		if (hs.numberLaps == maxNumberLaps) {
+			endMenu.enabled = true;
+			other.attachedRigidbody.velocity = Vector3.zero;
+		} else {
+			hs.numberLaps += 1;
+		}
 	}
 
 	// Use this for initialization

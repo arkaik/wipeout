@@ -12,7 +12,7 @@ public class CameraScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		diff = new Vector3 (0.0f,1.0f,5); //this.transform.position - target.transform.position;
+		//diff = new Vector3 (0.0f,1.0f,5); //this.transform.position - target.transform.position;
 		dist_back = 5f;
 		dist_up = 1f;
 	}
