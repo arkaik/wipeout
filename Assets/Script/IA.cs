@@ -8,23 +8,18 @@ public class IA : MonoBehaviour {
 	public float reachDistance = 1.0f;
 	public float rotationSpeed = 5.0f;
 	public string pathName;
+	public float altura = 10f;
 	
-	Vector3 lastPosition;
-	Vector3 currentPosition;
-	
-	public Transform[] wayPointList;
- 
-     public int currentWayPoint = 0; 
-     Transform targetWayPoint;
  
      public float speed = 50f;
-	 
-	 public float rdp = 10f;
 
 	// Use this for initialization
 	void Start () {
-		lastPosition = transform.position;
 		PathToFollow = GameObject.Find("Path").GetComponent<editorPathScript>();
+		transform.rotation = Quaternion.Euler(0, 180f, 0);
+		foreach (Transform path_obj in PathToFollow.path_objs) {
+			path_obj.position = new Vector3(path_obj.position.x,path_obj.position.y + altura,path_obj.position.z);
+		}
 	}
 	
 	// Update is called once per frame
