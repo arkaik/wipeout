@@ -6,15 +6,15 @@ public class CameraScript : MonoBehaviour {
 	public GameObject target;
 	public GameObject mainCamera;
 
-	private Vector3 diff;
-	private float dist_back;
-	private float dist_up;
+	//private Vector3 diff;
+	public float dist_back = 5f;
+	public float dist_up = 1f;
 
 	// Use this for initialization
 	void Start () {
 		//diff = new Vector3 (0.0f,1.0f,5); //this.transform.position - target.transform.position;
-		dist_back = 5f;
-		dist_up = 1f;
+		//dist_back = 5f;
+		//dist_up = 1f;
 	}
 	
 	// LateUpdate is called once per frame after physics
