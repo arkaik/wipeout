@@ -12,7 +12,7 @@ public class CameraScript : MonoBehaviour {
 	public GameObject mainCamera;
 
 	//private Vector3 diff;
-	public float distanceBack = 5f;
+	public float distanceBack = 10f;
 	public float distanceUp = 1f;
 
 	// Use this for initialization
@@ -24,8 +24,6 @@ public class CameraScript : MonoBehaviour {
 		Text tgui = (Text) gui.GetComponentInChildren<Text>();
 		gs.shot_text = tgui;
 		//diff = new Vector3 (0.0f,1.0f,5); //this.transform.position - target.transform.position;
-		//dist_back = 5f;
-		//dist_up = 1f;
 	}
 	
 	// LateUpdate is called once per frame after physics

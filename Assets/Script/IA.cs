@@ -4,43 +4,61 @@ using System.Collections.Generic;
 
 public class IA : MonoBehaviour {
 	public editorPathScript PathToFollow;
+	public Stats stats;
 	public int currentPointID = 0;
-	public float reachDistance = 1.0f;
+	float distanceBetPoints = 1.0f;
 	public float rotationSpeed = 5.0f;
 	public string pathName;
-	
-	Vector3 lastPosition;
-	Vector3 currentPosition;
-	
-	public Transform[] wayPointList;
- 
-     public int currentWayPoint = 0; 
-     Transform targetWayPoint;
- 
-     public float speed = 50f;
-	 
-	 public float rdp = 10f;
+	public float altura = 10f;
+	Vector3 init = new Vector3(0f,-90f,0f);
+	int m_layerMask;
 
 	// Use this for initialization
 	void Start () {
-		lastPosition = transform.position;
 		PathToFollow = GameObject.Find("Path").GetComponent<editorPathScript>();
+		if (currentPointID < PathToFollow.path_objs.Count) {
+			distanceBetPoints = Vector3.Distance(transform.position,PathToFollow.path_objs[currentPointID].position);
+			foreach (Transform path_obj in PathToFollow.path_objs) {
+				path_obj.position = new Vector3(path_obj.position.x,path_obj.position.y + altura,path_obj.position.z);
+			}
+		}
+		stats = GameObject.Find("dark_fighter_6").GetComponent<Stats>();
+		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
+		m_layerMask = ~m_layerMask;
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	         // check if we have somewere to walk
-			 if (currentPointID < PathToFollow.path_objs.Count) {
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position, transform.right, out hit, Mathf.Infinity, m_layerMask)) {
+			stats.currentVelocity -= 5f;
+			transform.position = Vector3.MoveTowards(transform.position,hit.transform.position,stats.currentVelocity*Time.deltaTime);
+		}
+		else if (Physics.Raycast(transform.position, transform.right, out hit, Mathf.Infinity, m_layerMask)) {
+			stats.currentVelocity -= 5f;
+			transform.position = Vector3.MoveTowards(transform.position,hit.transform.position,stats.currentVelocity*Time.deltaTime);
+		}
+		else followPath();
+	}
+	
+	void followPath() {
+		if (currentPointID < PathToFollow.path_objs.Count) {
 				 Vector3 targetPosition = PathToFollow.path_objs[currentPointID].position;
-				 var rotation = Quaternion.LookRotation(targetPosition - transform.position);
+				 var rotation = Quaternion.Euler(init.x,init.y,init.z);
+				 rotation *= Quaternion.LookRotation(targetPosition - transform.position);
 				 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
 				 float distance = Vector3.Distance(targetPosition, transform.position);
-				 transform.position = Vector3.MoveTowards(transform.position,targetPosition,speed*Time.deltaTime);
-				 if (distance <= reachDistance) {
-					 currentPointID = (currentPointID + 1) % PathToFollow.path_objs.Count;
-				 }
+				 float delta = stats.acc * Time.deltaTime;
+				 stats.currentVelocity = Mathf.Min(stats.currentVelocity + delta,stats.maxVelocity);
+				 transform.position = Vector3.MoveTowards(transform.position,targetPosition,stats.currentVelocity*Time.deltaTime);
+				 if (distance <= distanceBetPoints*0.05) {
+					currentPointID = (currentPointID + 1) % PathToFollow.path_objs.Count;
+					if (currentPointID == 0) stats.currentVelocity = 50f;
+					distanceBetPoints = Vector3.Distance(PathToFollow.path_objs[currentPointID].position,targetPosition);
+					 
+				}
 			 }
-			
 	}
 	
 }
