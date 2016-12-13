@@ -68,19 +68,24 @@ public class MenuScript : MonoBehaviour {
 	public void HelpEnter() {
 		timer = 0.0f;
 		fromRotation = Quaternion.Euler (0f, 0f, 0f);
+		fromPosition = new Vector3 (0, 20, 0);
 		toRotation = Quaternion.Euler (0f, -90f, 0f);
+		toPosition = new Vector3 (0, 20, 0);
 	}
 
 	public void HelpExit() {
 		timer = 0.0f;
 		fromRotation = Quaternion.Euler (0f, -90f, 0f);
+		fromPosition = new Vector3 (0, 20, 0);
 		toRotation = Quaternion.Euler (0f, 0f, 0f);
-
+		toPosition = new Vector3 (0, 20, 0);
 	}
 
 	public void LevelSelectionEnter() {
 		timer = 0.0f;
+		fromRotation = Quaternion.Euler(0,0,0);
 		fromPosition = new Vector3 (0, 20, 0);
+		toRotation = Quaternion.Euler(0,0,0);
 		toPosition = new Vector3 (0, 80, 0);
 	}
 
@@ -92,7 +97,7 @@ public class MenuScript : MonoBehaviour {
 
 	public void BackToTrackMenu() {
 		timer = 0.0f;
-		fromPosition = new Vector3 (0, 160, 0);
+		fromPosition = new Vector3 (0, 140, 0);
 		toPosition = new Vector3 (0, 80, 0);
 	}
 
@@ -113,8 +118,10 @@ public class MenuScript : MonoBehaviour {
 
 	public void SelectTrack() {
 		timer = 0.0f;
+		fromRotation = Quaternion.Euler (0,0,0);
 		fromPosition = new Vector3 (0, 80, 0);
-		toPosition = new Vector3 (0, 160, 0);
+		toRotation = Quaternion.Euler(0,0,0);
+		toPosition = new Vector3 (0, 140, 0);
 	}
 
 	public void NextCar() {
@@ -132,7 +139,7 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	public void SelectCar() {
-		PlayerPrefs.SetInt ("Car", actualCar);
+		PlayerPrefs.SetInt ("ship", actualCar);
 		SceneManager.LoadScene ("s" + actualTrack);
 	}
 
