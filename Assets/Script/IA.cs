@@ -52,7 +52,7 @@ public class IA : MonoBehaviour {
 				 float delta = stats.acc * Time.deltaTime;
 				 stats.currentVelocity = Mathf.Min(stats.currentVelocity + delta,stats.maxVelocity);
 				 transform.position = Vector3.MoveTowards(transform.position,targetPosition,stats.currentVelocity*Time.deltaTime);
-				 if (distance <= distanceBetPoints*0.1) {
+				 if (distance <= distanceBetPoints*0.05) {
 					currentPointID = (currentPointID + 1) % PathToFollow.path_objs.Count;
 					if (currentPointID == 0) stats.currentVelocity = 50f;
 					distanceBetPoints = Vector3.Distance(PathToFollow.path_objs[currentPointID].position,targetPosition);
