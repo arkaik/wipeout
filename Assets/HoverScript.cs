@@ -25,6 +25,10 @@ public class HoverScript : MonoBehaviour {
 	public float m_turnStrength = 10.0f;
 	float m_currTurn = 0.0f;
 
+	//Jump
+	public float m_impulseStrength = 200.0f;
+	float m_currImpulse = 0.0f;
+
 	int m_layerMask;
 
 	private Vector3 m_gravity = new Vector3 (0,-1,0);
@@ -55,6 +59,12 @@ public class HoverScript : MonoBehaviour {
 		float turnAxis = Input.GetAxis ("Horizontal");
 		if (Mathf.Abs (turnAxis) > m_deadZone)
 			m_currTurn = turnAxis;
+
+		m_currImpulse = 0.0f;
+		float jumpAxis = Input.GetAxis ("Jump");
+		if (Mathf.Abs (jumpAxis) > 0.5) {
+			m_currImpulse = 1.0f;
+		}
 	}
 
 	void FixedUpdate() {
@@ -90,6 +100,9 @@ public class HoverScript : MonoBehaviour {
 		else if (m_currTurn < 0)
 			m_rb.AddRelativeTorque(Vector3.up * m_currTurn * m_turnStrength);
 
+
+		if (m_currImpulse > 0)
+			m_rb.AddRelativeForce (Vector3.up * m_impulseStrength * m_currImpulse);
 		//m_rb.rotation = Quaternion.Euler (0,0,m_currTurn);
 	}
 

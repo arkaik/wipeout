@@ -6,6 +6,7 @@ public class GunScript : MonoBehaviour {
 
 	public GameObject bullet;
 	public Text shot_text;
+	public Transform ShooterPoint;
 
 	public int max_bullets = 5;
 	private int num_bullets = 0;
@@ -40,7 +41,7 @@ public class GunScript : MonoBehaviour {
 
 	private void Shot (){
 		if (num_bullets > 0) {
-			GameObject go = (GameObject)Instantiate (bullet, transform.position, Quaternion.identity);
+			GameObject go = (GameObject)Instantiate (bullet, ShooterPoint.position, Quaternion.identity);
 			Rigidbody rb = go.GetComponent<Rigidbody> ();
 			rb.velocity = transform.forward * 100;
 			num_bullets -= 1;
