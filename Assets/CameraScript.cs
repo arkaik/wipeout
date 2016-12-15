@@ -17,7 +17,7 @@ public class CameraScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		int chosenShip = PlayerPrefs.GetInt ("ship");
+		int chosenShip = PlayerPrefs.GetInt ("ship")-1;
 		target = (GameObject) Instantiate (ships [chosenShip], initialPosition, initialRotation);
 		GunScript gs = target.GetComponent<GunScript> ();
 		GameObject gui = GameObject.Find ("GUI");
