@@ -22,7 +22,7 @@ public class IA : MonoBehaviour {
 				path_obj.position = new Vector3(path_obj.position.x,path_obj.position.y + altura,path_obj.position.z);
 			}
 		}
-		stats = GameObject.Find("dark_fighter_6").GetComponent<Stats>();
+		stats = GameObject.Find("dark_fighter").GetComponent<Stats>();
 		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
 		m_layerMask = ~m_layerMask;
 		
@@ -31,7 +31,7 @@ public class IA : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.right, out hit, Mathf.Infinity, m_layerMask)) {
+		/*if (Physics.Raycast(transform.position, transform.right, out hit, Mathf.Infinity, m_layerMask)) {
 			stats.currentVelocity -= 5f;
 			transform.position = Vector3.MoveTowards(transform.position,hit.transform.position,stats.currentVelocity*Time.deltaTime);
 		}
@@ -39,7 +39,7 @@ public class IA : MonoBehaviour {
 			stats.currentVelocity -= 5f;
 			transform.position = Vector3.MoveTowards(transform.position,hit.transform.position,stats.currentVelocity*Time.deltaTime);
 		}
-		else followPath();
+		else */followPath();
 	}
 	
 	void followPath() {
