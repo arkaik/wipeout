@@ -68,7 +68,7 @@ public class HoverScript : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-
+		m_gravity = -transform.up;
 		Vector3 grav_force = m_gravity * m_rb.mass * 18.81f;
 		m_rb.AddForce (grav_force);
 
@@ -80,9 +80,8 @@ public class HoverScript : MonoBehaviour {
 					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
 				}
 				else if (distanceHover < hit.distance) {
-					m_rb.AddForceAtPosition (m_gravity, hov.transform.position);
+					m_rb.AddForce (m_gravity);
 				}
-				m_gravity = -transform.up;
 			}
 			else {
 				if (transform.position.y > hov.transform.position.y)
