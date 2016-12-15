@@ -6,6 +6,7 @@ public class editorPathScript : MonoBehaviour {
 	public Color rayColor = Color.red;
 	public List<Transform> path_objs = new List<Transform>();
 	Transform[] theArray;
+	public float tamEsf = 10f;
 	
 	void OnDrawGizmos() {
 		Gizmos.color = rayColor;
@@ -20,7 +21,7 @@ public class editorPathScript : MonoBehaviour {
 			if (i > 0) {
 				Vector3 previous = path_objs[i - 1].position;
 				Gizmos.DrawLine(previous,position);
-				Gizmos.DrawWireSphere(position,10f);
+				Gizmos.DrawWireSphere(position,tamEsf);
 			}
 		}
 	}
