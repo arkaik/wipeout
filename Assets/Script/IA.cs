@@ -9,20 +9,22 @@ public class IA : MonoBehaviour {
 	float distanceBetPoints = 1.0f;
 	public float rotationSpeed = 5.0f;
 	public string pathName;
+	public string nombreNave;
 	public float altura = 10f;
+	public float ancho = 10f;
 	Vector3 init = new Vector3(0f,-90f,0f);
 	int m_layerMask;
 
 	// Use this for initialization
 	void Start () {
-		PathToFollow = GameObject.Find("Path").GetComponent<editorPathScript>();
+		PathToFollow = GameObject.Find(pathName).GetComponent<editorPathScript>();
 		if (currentPointID < PathToFollow.path_objs.Count) {
 			distanceBetPoints = Vector3.Distance(transform.position,PathToFollow.path_objs[currentPointID].position);
 			foreach (Transform path_obj in PathToFollow.path_objs) {
-				path_obj.position = new Vector3(path_obj.position.x,path_obj.position.y + altura,path_obj.position.z);
+				path_obj.position = new Vector3(path_obj.position.x + ancho,path_obj.position.y + altura,path_obj.position.z);
 			}
 		}
-		stats = GameObject.Find("dark_fighter").GetComponent<Stats>();
+		stats = GameObject.Find(nombreNave).GetComponent<Stats>();
 		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
 		m_layerMask = ~m_layerMask;
 		

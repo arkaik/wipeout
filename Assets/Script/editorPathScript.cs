@@ -8,13 +8,16 @@ public class editorPathScript : MonoBehaviour {
 	Transform[] theArray;
 	public float tamEsf = 10f;
 	
-	void OnDrawGizmos() {
-		Gizmos.color = rayColor;
+	void Start() {
 		theArray = 	GetComponentsInChildren<Transform>();
 		path_objs.Clear();
 		foreach	(Transform path_obj in theArray) {
 			if (path_obj != this.transform) path_objs.Add(path_obj);
 		}
+	}
+	
+	void OnDrawGizmos() {
+		Gizmos.color = rayColor;
 		//Unir los puntos con una linea y ponerles una bolita
 		for (int i = 0; i < path_objs.Count;++i) {
 			Vector3 position = path_objs[i].position;

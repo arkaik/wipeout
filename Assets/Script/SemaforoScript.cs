@@ -5,12 +5,12 @@ public class SemaforoScript : MonoBehaviour {
 	
 	GameObject circulo1,circulo2,circulo3;
 	public bool empezar;
-	private int contador;
+	private float contador;
 
 	// Use this for initialization
 	void Start () {
 		empezar = false;
-		contador = 0;
+		contador = 0f;
 		circulo1 = GameObject.Find("Circle001");
 		circulo2 = GameObject.Find("Circle002");
 		circulo3 = GameObject.Find("Circle003");
@@ -19,13 +19,13 @@ public class SemaforoScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!empezar) {
-			if (contador >= 0 && contador < 100) {
+			if (contador >= 0 && contador < 3) {
 				circulo1.GetComponent<Renderer>().material.color = Color.red;
 			}
-			else if (contador >= 100 && contador < 200) {
+			else if (contador >= 3 && contador < 6) {
 				circulo2.GetComponent<Renderer>().material.color = Color.red;
 			}
-			else if (contador >= 200 && contador < 300) {
+			else if (contador >= 9 && contador < 12) {
 				circulo3.GetComponent<Renderer>().material.color = Color.red;
 			}
 			else {
@@ -34,7 +34,7 @@ public class SemaforoScript : MonoBehaviour {
 				circulo3.GetComponent<Renderer>().material.color = Color.green;
 				empezar = true;
 			}
-			++contador;
+			contador += Time.deltaTime;
 		}
 	}
 }
