@@ -16,5 +16,10 @@ public class EndMenuScript : MonoBehaviour {
 
 	public void GoToMenu() {
 		SceneManager.LoadScene("menu");
-	} 
+	}
+
+	public void RepeatLevel() {
+		Scene scene = SceneManager.GetActiveScene();
+		SceneManager.LoadScene(scene.name);
+	}
 }

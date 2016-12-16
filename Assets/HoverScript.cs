@@ -26,7 +26,7 @@ public class HoverScript : MonoBehaviour {
 	float m_currTurn = 0.0f;
 
 	//Jump
-	public float m_impulseStrength = 200.0f;
+	public float m_impulseStrength = 500.0f;
 	float m_currImpulse = 0.0f;
 
 	int m_layerMask;
@@ -34,6 +34,8 @@ public class HoverScript : MonoBehaviour {
 	private Vector3 m_gravity = new Vector3 (0,-1,0);
 
 	public int numberLaps = 0;
+
+	//public SemaforoScript ss;
 
 	void Start() {
 		m_rb = GetComponent<Rigidbody> ();
@@ -68,8 +70,8 @@ public class HoverScript : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-
-		Vector3 grav_force = m_gravity * m_rb.mass * 18.81f;
+		m_gravity = -transform.up;
+		Vector3 grav_force = m_gravity * m_rb.mass * 20f;
 		m_rb.AddForce (grav_force);
 
 		RaycastHit hit;
@@ -80,9 +82,8 @@ public class HoverScript : MonoBehaviour {
 					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
 				}
 				else if (distanceHover < hit.distance) {
-					m_rb.AddForceAtPosition (m_gravity, hov.transform.position);
+					m_rb.AddForce (grav_force);
 				}
-				m_gravity = -transform.up;
 			}
 			else {
 				if (transform.position.y > hov.transform.position.y)
