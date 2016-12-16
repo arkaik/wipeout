@@ -65,7 +65,7 @@ public class IA : MonoBehaviour {
 					currentPointID = (currentPointID + 1) % PathToFollow.path_objs.Count;
 					if (currentPointID == 0) stats.currentVelocity = 10f;
 					distanceBetPoints = Vector3.Distance(PathToFollow.path_objs[currentPointID].position,targetPosition);
-					if (distanceBetPoints > umbral) stats.currentVelocity -= stats.desacc;
+					if (distanceBetPoints < umbral) stats.currentVelocity -= stats.desacc;
 					 
 				}
 			 }
