@@ -14,10 +14,10 @@ public class BulletScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		HoverScript hs = other.gameObject.GetComponent<HoverScript>;
+		HoverScript hs = other.gameObject.GetComponent<HoverScript>();
 		if (hs != null) {
 			hs.m_forwardAcc = 0;
-			other.attachedRigidbody.velocity = 0;
+			other.attachedRigidbody.velocity = Vector3.zero;
 		}
 
 		Destroy (gameObject);

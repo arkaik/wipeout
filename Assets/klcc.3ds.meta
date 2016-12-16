@@ -1,0 +1,214 @@
+fileFormatVersion: 2
+guid: 63e37d6ca40796140b822785d52e182d
+timeCreated: 1481837251
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: default#11
+    100002: default#11.target
+    100004: //RootNode
+    100006: klcc-1
+    100008: klcc-1.l10
+    100010: klcc-1.l11
+    100012: klcc-1.l12
+    100014: klcc-1.l13
+    100016: klcc-1.l15
+    100018: klcc-1.l16
+    100020: klcc-1.l18
+    100022: klcc-1.l19
+    100024: klcc-1.l20
+    100026: klcc-1.l21
+    100028: klcc-1.l22
+    100030: klcc-1.l23
+    100032: klcc-1.l25
+    100034: klcc-1.l26
+    100036: klcc-1.l27
+    100038: klcc-1.l28
+    100040: klcc-1.l30
+    100042: klcc-1.l31
+    100044: klcc-1.l32
+    100046: klcc-1.la1
+    100048: klcc-1.la2
+    100050: klcc-1.la3
+    100052: klcc-1.la5
+    100054: klcc-1.la6
+    100056: klcc-1.la7
+    100058: klcc-1.la8
+    100060: klcc-1.la9
+    400000: default#11
+    400002: default#11.target
+    400004: //RootNode
+    400006: klcc-1
+    400008: klcc-1.l10
+    400010: klcc-1.l11
+    400012: klcc-1.l12
+    400014: klcc-1.l13
+    400016: klcc-1.l15
+    400018: klcc-1.l16
+    400020: klcc-1.l18
+    400022: klcc-1.l19
+    400024: klcc-1.l20
+    400026: klcc-1.l21
+    400028: klcc-1.l22
+    400030: klcc-1.l23
+    400032: klcc-1.l25
+    400034: klcc-1.l26
+    400036: klcc-1.l27
+    400038: klcc-1.l28
+    400040: klcc-1.l30
+    400042: klcc-1.l31
+    400044: klcc-1.l32
+    400046: klcc-1.la1
+    400048: klcc-1.la2
+    400050: klcc-1.la3
+    400052: klcc-1.la5
+    400054: klcc-1.la6
+    400056: klcc-1.la7
+    400058: klcc-1.la8
+    400060: klcc-1.la9
+    2300000: klcc-1.l10
+    2300002: klcc-1.l11
+    2300004: klcc-1.l12
+    2300006: klcc-1.l13
+    2300008: klcc-1.l15
+    2300010: klcc-1.l16
+    2300012: klcc-1.l18
+    2300014: klcc-1.l19
+    2300016: klcc-1.l20
+    2300018: klcc-1.l21
+    2300020: klcc-1.l22
+    2300022: klcc-1.l23
+    2300024: klcc-1.l25
+    2300026: klcc-1.l26
+    2300028: klcc-1.l27
+    2300030: klcc-1.l28
+    2300032: klcc-1.l30
+    2300034: klcc-1.l31
+    2300036: klcc-1.l32
+    2300038: klcc-1.la1
+    2300040: klcc-1.la2
+    2300042: klcc-1.la3
+    2300044: klcc-1.la5
+    2300046: klcc-1.la6
+    2300048: klcc-1.la7
+    2300050: klcc-1.la8
+    2300052: klcc-1.la9
+    3300000: klcc-1.l10
+    3300002: klcc-1.l11
+    3300004: klcc-1.l12
+    3300006: klcc-1.l13
+    3300008: klcc-1.l15
+    3300010: klcc-1.l16
+    3300012: klcc-1.l18
+    3300014: klcc-1.l19
+    3300016: klcc-1.l20
+    3300018: klcc-1.l21
+    3300020: klcc-1.l22
+    3300022: klcc-1.l23
+    3300024: klcc-1.l25
+    3300026: klcc-1.l26
+    3300028: klcc-1.l27
+    3300030: klcc-1.l28
+    3300032: klcc-1.l30
+    3300034: klcc-1.l31
+    3300036: klcc-1.l32
+    3300038: klcc-1.la1
+    3300040: klcc-1.la2
+    3300042: klcc-1.la3
+    3300044: klcc-1.la5
+    3300046: klcc-1.la6
+    3300048: klcc-1.la7
+    3300050: klcc-1.la8
+    3300052: klcc-1.la9
+    4300000: klcc-1.la1
+    4300002: klcc-1.la2
+    4300004: klcc-1.la3
+    4300006: klcc-1.la5
+    4300008: klcc-1.la6
+    4300010: klcc-1.la7
+    4300012: klcc-1.la8
+    4300014: klcc-1.la9
+    4300016: klcc-1.l10
+    4300018: klcc-1.l11
+    4300020: klcc-1.l12
+    4300022: klcc-1.l13
+    4300024: klcc-1.l15
+    4300026: klcc-1.l16
+    4300028: klcc-1.l18
+    4300030: klcc-1.l19
+    4300032: klcc-1.l20
+    4300034: klcc-1.l21
+    4300036: klcc-1.l22
+    4300038: klcc-1.l23
+    4300040: klcc-1.l25
+    4300042: klcc-1.l26
+    4300044: klcc-1.l27
+    4300046: klcc-1.l28
+    4300048: klcc-1.l30
+    4300050: klcc-1.l31
+    4300052: klcc-1.l32
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

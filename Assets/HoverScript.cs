@@ -26,7 +26,7 @@ public class HoverScript : MonoBehaviour {
 	float m_currTurn = 0.0f;
 
 	//Jump
-	public float m_impulseStrength = 200.0f;
+	public float m_impulseStrength = 500.0f;
 	float m_currImpulse = 0.0f;
 
 	int m_layerMask;
@@ -80,7 +80,7 @@ public class HoverScript : MonoBehaviour {
 					m_rb.AddForceAtPosition (hov.transform.up * m_hoverForce * (1.0f - (hit.distance / m_hoverHeight)), hov.transform.position);
 				}
 				else if (distanceHover < hit.distance) {
-					m_rb.AddForce (m_gravity);
+					m_rb.AddForce (grav_force);
 				}
 			}
 			else {
