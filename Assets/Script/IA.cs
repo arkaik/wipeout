@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class IA : MonoBehaviour {
-	public editorPathScript PathToFollow;
-	public Stats stats;
+	private editorPathScript PathToFollow;
+	private Stats stats;
 	public int currentPointID = 0;
 	float distanceBetPoints = 1.0f;
 	public float rotationSpeed = 5.0f;
