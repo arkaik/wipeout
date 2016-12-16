@@ -12,6 +12,7 @@ public class IA : MonoBehaviour {
 	public string nombreNave;
 	public float altura = 10f;
 	public float ancho = 10f;
+	public float umbral = 100f;
 	Vector3 init = new Vector3(0f,-90f,0f);
 	int m_layerMask;
 
@@ -47,17 +48,24 @@ public class IA : MonoBehaviour {
 	void followPath() {
 		if (currentPointID < PathToFollow.path_objs.Count) {
 				 Vector3 targetPosition = PathToFollow.path_objs[currentPointID].position;
-				 var rotation = Quaternion.Euler(init.x,init.y,init.z);
-				 rotation *= Quaternion.LookRotation(targetPosition - transform.position);
-				 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+				 if (nombreNave != "dark_fighter2") {
+					 var rotation = Quaternion.Euler(init.x,init.y,init.z);
+					 rotation *= Quaternion.LookRotation(targetPosition - transform.position);
+					 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+				 }
+				 else {
+					 var rotation = Quaternion.LookRotation(targetPosition - transform.position);
+					 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+				 } 
 				 float distance = Vector3.Distance(targetPosition, transform.position);
 				 float delta = stats.acc * Time.deltaTime;
 				 stats.currentVelocity = Mathf.Min(stats.currentVelocity + delta,stats.maxVelocity);
 				 transform.position = Vector3.MoveTowards(transform.position,targetPosition,stats.currentVelocity*Time.deltaTime);
 				 if (distance <= distanceBetPoints*0.05) {
 					currentPointID = (currentPointID + 1) % PathToFollow.path_objs.Count;
-					if (currentPointID == 0) stats.currentVelocity = 50f;
+					if (currentPointID == 0) stats.currentVelocity = 10f;
 					distanceBetPoints = Vector3.Distance(PathToFollow.path_objs[currentPointID].position,targetPosition);
+					if (distanceBetPoints > umbral) stats.currentVelocity -= stats.desacc;
 					 
 				}
 			 }
