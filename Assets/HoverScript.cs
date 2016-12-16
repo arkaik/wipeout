@@ -35,6 +35,8 @@ public class HoverScript : MonoBehaviour {
 
 	public int numberLaps = 0;
 
+	//public SemaforoScript ss;
+
 	void Start() {
 		m_rb = GetComponent<Rigidbody> ();
 		m_layerMask = 1 << LayerMask.NameToLayer ("Characters");
@@ -69,7 +71,7 @@ public class HoverScript : MonoBehaviour {
 
 	void FixedUpdate() {
 		m_gravity = -transform.up;
-		Vector3 grav_force = m_gravity * m_rb.mass * 18.81f;
+		Vector3 grav_force = m_gravity * m_rb.mass * 20f;
 		m_rb.AddForce (grav_force);
 
 		RaycastHit hit;
